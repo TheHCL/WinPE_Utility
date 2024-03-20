@@ -94,7 +94,7 @@ def backup_wimfile():
     #optimzie failure
     #os.system("DISM /image:"+x+":\\ /optimize-image /boot")
     time.sleep(5)
-    os.system('Dism /Capture-Image /ImageFile:'+a_path+' /CaptureDir:'+x+':\\ /Name:'+name)
+    os.system('Dism /Capture-Image /ImageFile:"'+a_path+'" /CaptureDir:"'+x+'":\\ /Name:'+name)
     os.remove("list_vol_script.txt")
     PromptUtils(Screen()).enter_to_continue()
 
@@ -108,7 +108,7 @@ def restore_wimfile():
     f.write("dism /Apply-Image /ImageFile:%1 /Index:1 /ApplyDir:W:\\\n")
     f.write("bcdboot W:\\Windows /s S: /f UEFI")
     f.close()
-    os.system("applyimage.bat "+a)
+    os.system('applyimage.bat "'+a+'"')
 
     os.remove("list_disk_script.txt")
     os.remove("CreatePartitions-UEFI.txt")
@@ -132,7 +132,7 @@ def backup_ffufile():
 
 
     name = ((os.path.split(a.name)[1]).split("."))[0]
-    os.system("dism /Capture-Ffu /ImageFile:"+a_path+" /CaptureDrive:\\\\.\\PhysicalDrive"+x+" /Name:"+name)
+    os.system('dism /Capture-Ffu /ImageFile:"'+a_path+'" /CaptureDrive:\\\\.\\PhysicalDrive'+x+' /Name:'+name)
 
     os.remove("list_disk_script.txt")
 
@@ -144,7 +144,7 @@ def restore_ffufile():
     ffu_clean(x)
     a=filedialog.askopenfilename(title="Select FFU file to restore",filetypes=[("FFU file", ".ffu")],defaultextension=".ffu")
     a=a.replace("/","\\")
-    os.system("dism /apply-ffu /ImageFile="+a+" /ApplyDrive:\\\\.\\PhysicalDrive"+x)
+    os.system('dism /apply-ffu /ImageFile="'+a+'" /ApplyDrive:\\\\.\\PhysicalDrive'+x)
 
     os.remove("clean_disk.txt")
     os.remove("list_disk_script.txt")
