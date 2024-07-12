@@ -157,7 +157,7 @@ def wpe_reboot():
     os.system("wpeutil reboot")
 
 # Create the menu
-menu = ConsoleMenu("PoorGuy", "SA Utilities")
+menu = ConsoleMenu("FFU Maker", "Easily to backup/restore FFU \nThe source/target ssd Must be the same",epilogue_text="Copyright 2024 Compal Electronic Inc. All right reserved.\nDesigned by Software Application 17 and limited to be used in Compal internal only.")
 
 ###################################################################################
 # Create some items
